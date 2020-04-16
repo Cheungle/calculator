@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html lang="zxx">
+
+<head>
+	<title>General Calculator</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="Calculator"/>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<!-- Style Css -->
+	<link rel="stylesheet" type="text/css" href="css/creative.min.css">
+	<!-- Calculator Css -->
+	<!-- //css files -->
+    
+</head>
+
+<body>
+	<!-- title -->
+	<h1>General Calculator<sub>a</sub></h1>
+	<!-- //title -->
+
+	<!-- content -->
+	<div class="sub-main-con">
+		<div class="direction">	
+			<ul>
+				<li><a class="" href="index.html">首页</a></li>
+				<li><a class="active"href="highlevel.html">高级计算器</a></li>
+				<li><a class=""href="system.html">进制转换计算器</a></li>
+				<li><a class=""href="relation.html">亲戚关系计算器</a></li>
+			  </ul>	
+		</div>
+		<div class="widget-agile-high">
+			<div class="calculator">
+				<div class="row displayBox">
+					<p class="displayText" id="display">0</p>
+				</div>
+				<div class="row numberPad">
+					<div class="left-count">
+						<div class="row">
+							<button class="btn calu-func calu-func-high" id="calu-func">C</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="back">&#8592;</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="percent">%</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="leftbra">(</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="rightbra">)</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="statistics">M+</button>
+                        </div>
+						<div class="row">
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="seven">7</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="eight">8</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="nine">9</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="e">e</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="pi">&pi;</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="mean"><span style="text-decoration:overline;">x</span></button>
+						</div>
+						<div class="row">
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="four">4</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="five">5</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="six">6</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="factorial">x!</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="fraction">1/x</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="variance">s&sup2;</button>
+						</div>
+						<div class="row">
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="one">1</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="two">2</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="three">3</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="powerex">`x^y`</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="square">x&sup2;</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="cube">x&sup3;</button>
+						</div>
+						<div class="row">
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="plus_minus">&#177;</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="zero">0</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="decimal">.</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="radical">`x^(1/y)`</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="radicaltwo">√<span style="text-decoration:overline;">x</span></button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="radicalthree">`x^(1/3)`</button>
+                        </div>
+                        <div class="row">
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="seven">sin</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="eight">cos</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="nine">tan</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="log">logxy</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="ln">ln</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="lg">lg</button>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="arcsin">arcsin</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="arccos">arccos</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="arctan">arctan</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="epower">`e^x`</button>
+							<button class="btn btn-calc btn-calc-high hvr-radial-out" id="rad">rad</button>
+                            <button class="btn btn-calc btn-calc-high hvr-radial-out" id="rand">rand</button>
+                        </div>
+					</div>
+					<div class="operationSide right-count">
+						<button id="divide" class="btn btn-operation btn-operation-high hvr-fade">÷</button>
+						<button id="multiply" class="btn btn-operation btn-operation-high hvr-fade">×</button>
+                        <button id="subtract" class="btn btn-operation btn-operation-high hvr-fade">−</button>
+						<button id="add" class="btn btn-operation btn-operation-high hvr-fade">+</button>
+						<button id="equals" class="btn btn-operation btn-operation-high equals">=</button>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div class="record">
+			<p>first</p>
+			<p>second</p>
+		</div>
+	</div>
+	<!-- //content -->
+
+	<!-- JavaScript -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+    <!-- Default-JavaScript-File -->
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+	<!-- calculator js -->
+	<script src="js/calculate.js"></script>
+	<!-- //calculator js -->
+
+</body>
+
+</html>

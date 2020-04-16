@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="zxx">
+
+<head>
+	<title>General Calculator</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="Calculator"/>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- Meta tag Keywords -->
+
+	<!-- css files -->
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<!-- Style Css -->
+	<link rel="stylesheet" type="text/css" href="css/creative.min.css">
+	<!-- Calculator Css -->
+	<!-- //css files -->
+</head>
+
+<body>
+	<!-- title -->
+	<h1>General Calculator</h1>
+	<!-- //title -->
+
+	<!-- content -->
+	<div class="sub-main-con">
+		<div class="direction">	
+			<ul>
+				<li><a class="" href="index.html">首页</a></li>
+				<li><a class=""href="highlevel.html">高级计算器</a></li>
+				<li><a class=""href="system.html">进制转换计算器</a></li>
+				<li><a class="active"href="relation.html">亲戚关系计算器</a></li>
+			  </ul>	
+		</div>
+		<div class="widget-agile">
+			<div class="calculator">
+				<div class="row displayBox">
+					<p class="displayText" id="display">0</p>
+				</div>
+				<div class="row numberPad">
+					<div class="left-count">
+						<div class="row">
+							<button class="btn calu-func" id="calu-func">C</button>
+                            <button class="btn btn-calc hvr-radial-out" id="osister">姐</button>
+							<button class="btn btn-calc hvr-radial-out" id="ysister">妹</button>
+						</div>
+						<div class="row">
+							<button class="btn btn-calc hvr-radial-out" id="father">父</button>
+							<button class="btn btn-calc hvr-radial-out" id="mother">母</button>
+							<button class="btn btn-calc hvr-radial-out" id="obro">兄</button>
+						</div>
+						<div class="row">
+							<button class="btn btn-calc hvr-radial-out" id="husband">夫</button>
+							<button class="btn btn-calc hvr-radial-out" id="wife">妻</button>
+							<button class="btn btn-calc hvr-radial-out" id="ybro">弟</button>
+						</div>
+						<div class="row">
+							<button class="btn btn-calc hvr-radial-out" id="son">儿</button>
+							<button class="btn btn-calc hvr-radial-out" id="daughter">女</button>
+							<button class="btn btn-calc hvr-radial-out" id="back">&#8592;</button>
+						</div>
+
+					</div>
+					<div class="operationSide right-count">
+						<button id="" class="btn btn-operation hvr-fade">&nbsp;</button>
+						<button id="north" class="btn btn-operation hvr-fade">北方</button>
+						<button id="south" class="btn btn-operation hvr-fade">南方</button>
+						<button id="equals" class="btn btn-operation equals">=</button>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div class="record">
+			<p>first</p>
+			<p>second</p>
+		</div>
+	</div>
+	<!-- //content -->
+
+	<!-- JavaScript -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- Default-JavaScript-File -->
+	<!-- calculator js -->
+	<script src="js/calculate.js"></script>
+	<!-- //calculator js -->
+
+</body>
+
+</html>
