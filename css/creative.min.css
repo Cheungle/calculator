@@ -28,10 +28,17 @@ a {
     overflow: hidden;
     border-radius: 25px 25px 0 0;
 }
+.displayBox-big{
+    background: #FFF;
+    overflow: hidden;
+    border-radius: 25px 25px 0 0;
+    word-break:break-all;
+    word-wrap:break-word ;
+}
 
 .displayText {
     color: #292929;
-    font-size: 60px;
+    font-size: 55px;
     font-weight: 100;
     overflow: hidden;
     text-align: right;
@@ -73,6 +80,18 @@ a {
     color: #455A64;
     width: 46px;
     height: 46px;
+    border-radius: 100px;
+    border: none;
+    margin: 6px 10px;
+    box-shadow: 2px 3px 5px 1px rgba(0, 0, 0, 0.16);
+    font-size: 14px;
+}
+.btn-calc-sys,
+.btn-calc-sys:focus{
+    background: rgba(255, 255, 255, 0.17);
+    color: #455A64;
+    width: 63px;
+    height: 63px;
     border-radius: 100px;
     border: none;
     margin: 6px 10px;
@@ -141,8 +160,16 @@ a {
 .calu-func-high:focus {
     width: 46px;
     height: 46px;
+    margin: 6px 10px;
+    font-size: 14px;
 }
-
+.calu-func-sys,
+.calu-func-sys:focus {
+    width: 63px;
+    height: 63px;
+    margin: 6px 10px;
+    font-size: 15px;
+}
 .calu-func:hover{
     background: #455A64;
     color: #FFF;
@@ -189,6 +216,22 @@ a {
     .calu-func:focus {
         width: 55px;
         height: 55px;
+    }
+    .btn-calc-high,
+    .btn-calc-high:focus,
+    .calu-func-high,
+    .calu-func-high:focus {
+        width: 37px;
+        height: 37px;
+        font-size: 11px;
+    }
+    .btn-calc-sys,
+    .btn-calc-sys:focus,
+    .calu-func-sys,
+    .calu-func-sys:focus {
+        width: 53px;
+        height: 53px;
+        font-size: 11px;
     }
     .btn-operation {
         height: 70px;
