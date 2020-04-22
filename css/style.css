@@ -233,13 +233,16 @@ li a:hover:not(.active) {
 }
 .record{
     width: 13%;
-    height: auto;
+    height: 480px;
+    text-align: left;
     background-color: white;
     border-radius: 15px;
     padding:3px 0px 3px 7px;
     overflow-y:auto; 
-    overflow-x:auto;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.record-re{
+    height: 430px;
 }
 .record p{
     margin-top: 8px;

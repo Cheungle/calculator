@@ -11,9 +11,7 @@
 
 	<!-- css files -->
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<!-- Style Css -->
 	<link rel="stylesheet" type="text/css" href="css/creative.min.css">
-	<!-- Calculator Css -->
 	<!-- //css files -->
 </head>
 
@@ -35,55 +33,56 @@
 		<div class="widget-agile">
 			<div class="calculator">
 				<div class="row displayBox">
-					<p class="displayText" id="display">0</p>
+					<p class="displayText displayText-re" id="display">我</p>
+					<p class="displayResult" id="result">我</p>
 				</div>
 				<div class="row numberPad">
 					<div class="left-count">
 						<div class="row">
 							<button class="btn calu-func" id="calu-func">C</button>
-                            <button class="btn btn-calc hvr-radial-out" id="osister">姐</button>
-							<button class="btn btn-calc hvr-radial-out" id="ysister">妹</button>
+                            <button class="btn btn-calc hvr-radial-out relation-btn" id="os" value="姐姐">姐</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="ys" value="妹妹">妹</button>
 						</div>
 						<div class="row">
-							<button class="btn btn-calc hvr-radial-out" id="father">父</button>
-							<button class="btn btn-calc hvr-radial-out" id="mother">母</button>
-							<button class="btn btn-calc hvr-radial-out" id="obro">兄</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="fa" value="爸爸">父</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="mo" value="妈妈">母</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="ob" value="哥哥">兄</button>
 						</div>
 						<div class="row">
-							<button class="btn btn-calc hvr-radial-out" id="husband">夫</button>
-							<button class="btn btn-calc hvr-radial-out" id="wife">妻</button>
-							<button class="btn btn-calc hvr-radial-out" id="ybro">弟</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="hus" value="丈夫">夫</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="wi" value="妻子">妻</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="yb" value="弟弟">弟</button>
 						</div>
 						<div class="row">
-							<button class="btn btn-calc hvr-radial-out" id="son">儿</button>
-							<button class="btn btn-calc hvr-radial-out" id="daughter">女</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="son" value="儿子">儿</button>
+							<button class="btn btn-calc hvr-radial-out relation-btn" id="da" value="女儿">女</button>
 							<button class="btn btn-calc hvr-radial-out" id="back">&#8592;</button>
 						</div>
 
 					</div>
 					<div class="operationSide right-count">
-						<button id="" class="btn btn-operation hvr-fade">&nbsp;</button>
-						<button id="north" class="btn btn-operation hvr-fade">北方</button>
-						<button id="south" class="btn btn-operation hvr-fade">南方</button>
+						<button id="" class="btn btn-sex hvr-fade">
+							<input type="radio" name="sex" value="男" id="man" checked />男
+							<input type="radio" name="sex" value="女" id="woman" />女
+						</button>
+						<button id="op" class="btn btn-operation hvr-fade btn-age" disabled="true" value="年长">年长</button>
+						<button id="yp" class="btn btn-operation hvr-fade btn-age" disabled="true" value="年轻">年轻</button>
 						<button id="equals" class="btn btn-operation equals">=</button>
 					</div>
 					<div class="clear"></div>
 				</div>
 			</div>
 		</div>
-		<div class="record">
-			<p>first</p>
-			<p>second</p>
+		<div class="record record-re">
+			<p>首先，需选择自己的性别</p>
 		</div>
 	</div>
 	<!-- //content -->
 
 	<!-- JavaScript -->
 	<script src="js/jquery-2.2.3.min.js"></script>
-	<!-- Default-JavaScript-File -->
-	<!-- calculator js -->
-	<script src="js/calculate.js"></script>
-	<!-- //calculator js -->
+	<script src="js/relation.js"></script>
+	<!-- //JavaScript -->
 
 </body>
 
