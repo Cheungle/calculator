@@ -25,7 +25,7 @@ $(document).ready(function() {
     $("#plus_minus").click(function() {
         var string = displayBox.HTML;
         if (string.chatAt(string.IndexOf(")")+1) != "-") {
-            string = string.slice(0,string.IndexOf(")"+1)) + "-" + string.slice(string.IndexOf(")"+1));
+            string = string.substring(0,string.IndexOf(")")+1) + "-" + string.substring(string.IndexOf(")")+1);
             checkLength(string);
             displayBox.innerHTML = string;
         } else {
