@@ -63,8 +63,10 @@ $(document).ready(function() {
 			{"name":"未知","爸爸":"未知","妈妈":"未知","哥哥":"未知","姐姐":"未知","丈夫":"未知","妻子":"未知","弟弟":"未知","妹妹":"未知","儿子":"未知","女儿":"未知"},
 			{"name":"同性","爸爸":"未知","妈妈":"未知","哥哥":"未知","姐姐":"未知","丈夫":"未知","妻子":"未知","弟弟":"未知","妹妹":"未知","儿子":"未知","女儿":"未知"}
 	];
+	    //relation list
 		var myre = [];
 		myre.push("我");
+		//age list
 		var ageCompare = [];
 		var result ;
 
@@ -112,7 +114,7 @@ $(document).ready(function() {
 		result = result[age] ;
 		displayRes.innerHTML = result;
 	});
-
+    //show result and add a record
     $("#equals").click(function() {
 		highlightRes();
 		var string = "<p>"+displayBox.innerHTML+"="+displayRes.innerHTML+"</p>";
