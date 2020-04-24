@@ -10,7 +10,7 @@ $(document).ready(function() {
       if (Number(displayBox.innerHTML) >= 0) {
         console.log(Number(displayBox.innerHTML));
         displayBox.innerHTML = "-" + displayBox.innerHTML; 
-        last = "(-"+last+")";
+        last = "(-" + last + ")";
         myrecord.push(last);
       } else {
         displayBox.innerHTML = displayBox.innerHTML.replace("-", "");
@@ -23,7 +23,7 @@ $(document).ready(function() {
       if (Number(displayBox.innerHTML) >= 0) {
         console.log(Number(displayBox.innerHTML));
         displayBox.innerHTML = "-" + displayBox.innerHTML; 
-        var last = displayBox.innerHTML;
+        var last = "(" + displayBox.innerHTML + ")";
       } else {
         displayBox.innerHTML = displayBox.innerHTML.replace("-", "");
         var last = displayBox.innerHTML;
@@ -104,12 +104,14 @@ $(document).ready(function() {
       myrecord.push(displayBox.innerHTML);
       if(hasEvaluated) {
         myrecord = [];
+        hasEvaluated = false;
         displayBox.innerHTML = 0;
       }
     }
     else {
       displayBox.innerHTML = 0;
       myrecord = [];
+      hasEvaluated = false;
     }
   });
   $('#equals').click(function() {
