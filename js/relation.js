@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var mysex=" ";
 	//relation show
     var set=[
-            {"name":"我","爸爸":"爸爸","妈妈":"妈妈","哥哥":"哥哥","姐姐":"姐姐","丈夫":"丈夫","妻子":"妻子","弟弟":"弟弟","妹妹":"妹妹","儿子":"儿子","女儿":"女儿"},
+            {"name":"我","爸爸":"爸爸","妈妈":"妈妈","哥哥":"哥哥","姐姐":"姐姐","丈夫":{"男":"同性","女":"丈夫"},"妻子":{"男":"妻子","女":"同性"},"弟弟":"弟弟","妹妹":"妹妹","儿子":"儿子","女儿":"女儿"},
 			{"name":"爸爸","爸爸":"爷爷","妈妈":"奶奶","哥哥":"伯父","姐姐":"姑妈","丈夫":"同性","妻子":"妈妈","弟弟":"叔叔","妹妹":"姑妈","儿子":{"年长":"哥哥","年轻":"弟弟"},"女儿":{"年长":"姐姐","年轻":"妹妹"}},
 			{"name":"妈妈","爸爸":"外公","妈妈":"外婆","哥哥":"舅舅","姐姐":"姨妈","丈夫":"爸爸","妻子":"同性","弟弟":"舅舅","妹妹":"姨妈","儿子":{"年长":"哥哥","年轻":"弟弟"},"女儿":{"年长":"姐姐","年轻":"妹妹"}},
 			{"name":"爷爷","爸爸":"太公","妈妈":"太婆","哥哥":"伯公","姐姐":"姑奶奶","丈夫":"同性","妻子":"奶奶","弟弟":"叔伯","妹妹":"姑奶奶","儿子":{"年长":"伯父","年轻":"叔叔"},"女儿":"姑妈"},
@@ -104,7 +104,11 @@ $(document).ready(function() {
 		result = simplifyTwoToOne(start,relative);
 		judge();
 		//console.log(result);
-		if(typeof(result) === "string")displayRes.innerHTML = result;
+		if(typeof(result) === "string"){
+			if( result === "未知"|| result === " ") result = "关系太远了，随便叫叫吧！";
+		    if( result === "同性") result = "暂不支持同性称呼查询!";
+			displayRes.innerHTML = result;
+		}
 	});
 	//old or young
 	$(".btn-age").click(function(){
@@ -199,10 +203,12 @@ $(document).ready(function() {
 		console.log(theRe);
 		return theRe[0];
 	}
-	//judge age and sex
+	//judge age and sex when input
 	function judge(){
 		if(typeof(result)!== "string"){
-			if(result["年长"])showOldOrY();
+			if(result["年长"]){
+				showOldOrY();
+			}
 			if(result["男"]){
 				getSex();
 				result = result[mysex];
