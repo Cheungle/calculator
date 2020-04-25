@@ -48,38 +48,46 @@ $(document).ready(function () {
     //input numbers and letters
     function clickNumbers(val) {
         var string = displayBox.innerHTML;
-        if (string.charAt(string.indexOf("(") + 1) != string.charAt(string.indexOf(")") - 1)) {
-            var substring1 = Number(string.charAt(string.indexOf("(") + 1) + string.charAt(string.indexOf(")") - 1));
+        if (string.lastIndexOf(")")>3) {
+            ;
         } else {
-            var substring1 = Number(string.charAt(string.indexOf("(") + 1));
-        }
-        if (Number(val) < substring1) {
-            string += val;
-            checkLength(string);
-            displayBox.innerHTML = string;
-        } else {
-            displayBox.innerHTML = "Invalid";
-            $("button").prop("disabled", true);
-            $(".calu-func").attr("disabled", false);
+            if (string.charAt(string.indexOf("(") + 1) != string.charAt(string.indexOf(")") - 1)) {
+                var substring1 = Number(string.charAt(string.indexOf("(") + 1) + string.charAt(string.indexOf(")") - 1));
+            } else {
+                var substring1 = Number(string.charAt(string.indexOf("(") + 1));
+            }
+            if (Number(val) < substring1) {
+                string += val;
+                checkLength(string);
+                displayBox.innerHTML = string;
+            } else {
+                displayBox.innerHTML = "Invalid";
+                $("button").prop("disabled", true);
+                $(".calu-func").attr("disabled", false);
+            }
         }
     }
 
     function clickLetters(val) {
         var string = displayBox.innerHTML;
-        if (string.charAt(string.indexOf("(") + 1) != string.charAt(string.indexOf(")") - 1)) {
-            var substring1 = Number(string.charAt(string.indexOf("(") + 1) + string.charAt(string.indexOf(")") - 1));
+        if (string.lastIndexOf(")")>3) {
+            ;
         } else {
-            var substring1 = Number(string.charAt(string.indexOf("(") + 1));
-        }
-        if (substring1 == 16) {
-            string += val;
-            checkLength(string);
-            displayBox.innerHTML = string;
-        } else {
-            displayBox.innerHTML = "Invalid";
-            $("button").prop("disabled", true);
-            $(".calu-func").attr("disabled", false);
-        }
+            if (string.charAt(string.indexOf("(") + 1) != string.charAt(string.indexOf(")") - 1)) {
+                var substring1 = Number(string.charAt(string.indexOf("(") + 1) + string.charAt(string.indexOf(")") - 1));
+            } else {
+                var substring1 = Number(string.charAt(string.indexOf("(") + 1));
+            }
+            if (substring1 == 16) {
+                string += val;
+                checkLength(string);
+                displayBox.innerHTML = string;
+            } else {
+                displayBox.innerHTML = "Invalid";
+                $("button").prop("disabled", true);
+                $(".calu-func").attr("disabled", false);
+            }
+        } 
     }
 
     //numbers and letters
