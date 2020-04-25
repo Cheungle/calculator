@@ -125,11 +125,12 @@ $(document).ready(function () {
         //console.log(stringReverse);
         var index = stringReverse.search("[^\\d.]");
         index = string.length - index ;
-        //console.log(index);
-        if(( index <= string.length && string.indexOf(".",index) == -1) || (index > string.length && string.indexOf(".") == -1)){
-            string = string + ".";
-            checkLength(string);
-            displayBox.innerHTML = string;
+        if( string !== "Infinity" &&  string !== "NaN" && string !== "Undefined"){
+            if(( index <= string.length && string.indexOf(".",index) == -1 && string.charAt(index-1) !== ")" && string.charAt(length-1) !== "%")|| (index > string.length && string.indexOf(".") == -1)){
+                string = string + ".";
+                checkLength(string);
+                displayBox.innerHTML = string;
+            }
         }
     });
 
@@ -208,14 +209,14 @@ $(document).ready(function () {
 
     function clickNumbers(val) {
         var string = displayBox.innerHTML;
-        //console.log(string);
+        console.log(string);
         var length = string.length;
         if (string.charAt(length - 1) == "%" || (string.charAt(length - 1) == ")" && string.charAt(length - 2) != "y") ||
             string.charAt(length - 1) == "=" || string.charAt(length - 1) == "e" || string.charAt(length - 1) == "pi" ||
-            string.charAt(length - 1) == "i" || string.charAt(length - 1) == "!" || string === "NaN" || string === "Inifity" || string === "Undefined") {
+            string.charAt(length - 1) == "i" || string.charAt(length - 1) == "!" || string === "NaN" || string === "Infinity" || string === "Undefined") {
             ;
         } else {
-            if( (!isNaN(string.charAt(length-1)) || string == "Infinity" ) && (val == "e" || val == "pi")){
+            if( !isNaN(string.charAt(length-1)) && (val == "e" || val == "pi")){
                 ;
             }else{
                 if (string == "0" || string.substring(0, 2) == "n=") {
@@ -261,7 +262,9 @@ $(document).ready(function () {
                 }
             } else {
                 if (string == "0") {
-                    if( val == "^" || val == "^2" || val == "^3" || val == "!" || val == "^(1/2)" || val == "^(1/3)" || val == "^(1/y)"){
+                    if( val == "^" || val == "^2" || val == "^3" || val == "!" || val == "^(1/2)" ||
+                        val == "^(1/3)" || val == "^(1/y)" || val == "+" || val == "-" || val == "*" 
+                        || val == "/" || val == "%"){
                         string += val;
                         checkLength(string);
                         displayBox.innerHTML = string;
