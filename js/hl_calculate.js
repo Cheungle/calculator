@@ -1,5 +1,6 @@
 /**
  韩亚楠-高级计算器  
+ 易慧婕-修改
  */
 $(document).ready(function () {
     var displayBox = document.getElementById("display");
@@ -63,8 +64,8 @@ $(document).ready(function () {
     $("#statistics").click(function () {
         var num = displayBox.innerHTML;
         if( !isNaN(num) || evaluate()){
-            console.log(num);
-            console.log(evaluate());
+            //console.log(num);
+            //console.log(evaluate());
             stanum += 1;
             if(!isNaN(num)) staarray.push(Number(num));
             else staarray.push(evaluate());
@@ -76,12 +77,11 @@ $(document).ready(function () {
 
     $("#plus_minus").click(function () {
         var content = displayBox.innerHTML;
-        //console.log(content);
         if( !isNaN(content) && content !== "Infinity") {
             //console.log(content);
             if(Number(content) >= 0) {
                 content = "(-" + content + ")";
-                console.log(content);
+                //console.log(content);
             }
             else { 
                 content = content.replace("(","");
@@ -90,11 +90,16 @@ $(document).ready(function () {
             }
         }
         else{
+            //console.log(content);
             if( !isNaN(content.charAt(content.length-1)) ){
              var string = content.split("").reverse().join("");
              var index = string.search("[^\\d.]");
-             index = content.length - index ;
-             content = content.replace(content.substring(index),"(-"+content.substring(index)+")");
+             index = string.length - index ;
+             //console.log(content);
+             //console.log(index);
+             var num = content.substring(index);
+             content = replaceStr(content,index,content.length-1,"(-"+ num +")");
+            //console.log(content);
             }
             else {
                 var string = content.split("").reverse().join("");
@@ -102,7 +107,11 @@ $(document).ready(function () {
                 var index = string.search("[^\\d.]");
                 index = string.length - index ;
                 if(content.charAt(content.length-1) == ")" && content.charAt(index-1) == "-" && content.charAt(index-2) == "("){
-                    content = content.replace(content.substring(index-2),content.substring(index,content.length-1)); 
+                    content = replaceStr(content,index-2,content.length-1,content.substring(index,content.length-1));
+                }else {
+                    if(content.charAt(content.length-1) == ")" && content.charAt(index-1) == "(" ){
+                        content = replaceStr(content,index,index,"-"+content.charAt(index));
+                    }
                 }
             }
         }
@@ -113,10 +122,10 @@ $(document).ready(function () {
     $("#decimal").click(function () {
         var string = displayBox.innerHTML;
         var stringReverse = string.split("").reverse().join("");
-        console.log(stringReverse);
+        //console.log(stringReverse);
         var index = stringReverse.search("[^\\d.]");
         index = string.length - index ;
-        console.log(index);
+        //console.log(index);
         if(( index <= string.length && string.indexOf(".",index) == -1) || (index > string.length && string.indexOf(".") == -1)){
             string = string + ".";
             checkLength(string);
@@ -130,37 +139,41 @@ $(document).ready(function () {
         var temArray = staarray.concat();
         for (var i = 0; i < stanum; i++) {
             outcome += temArray.pop() / stanum;
-            console.log(outcome);
+            //console.log(outcome);
         }
         clickMarks("mean=" + outcome.toString());
-        $("button").attr("disabled", true);
-        $(".calu-func").attr("disabled", false);
-        $("#variance").attr("disabled", false);
+        if(staarray.length != 0){
+            $("button").attr("disabled", true);
+            $(".calu-func").attr("disabled", false);
+            $("#variance").attr("disabled", false);
+        }
     });
     $("#variance").click(function () {
         var mean = 0;
         var outcome = 0;
         var staarray1 = staarray.concat();
-        console.log(staarray1);
+        //console.log(staarray1);
         var temArray = staarray.concat();
         for (var i = 0; i < stanum; i++) {
             mean += temArray.pop() / stanum;
-            console.log(mean);
+            //console.log(mean);
         }
         for (var j = 0; j < stanum; j++) {
             var cnum = staarray1.pop() - mean;
             outcome += cnum * cnum / stanum;
         }
-        console.log(outcome);
+        //console.log(outcome);
         clickMarks("variance=" + outcome.toString());
-        $("button").attr("disabled", true);
-        $(".calu-func").attr("disabled", false);
-        $("#mean").attr("disabled", false);
+        if(staarray.length != 0){
+            $("button").attr("disabled", true);
+            $(".calu-func").attr("disabled", false);
+            $("#mean").attr("disabled", false);
+        }
     });
     //弧度化角度、角度化弧度（带有pi的识别为弧度）
     $("#rad").click(function () {
         var string = displayBox.innerHTML;
-        if (!isNaN(string)){
+        if (!isNaN(string) && string !== "Infinity"){
             if (string.indexOf("p") == -1) {
                 string = (Number(string) / 180).toString() + "*pi";
                 checkLength(string);
@@ -168,19 +181,18 @@ $(document).ready(function () {
             } 
         }
         else {
-            if( string.substring(string.length-3) == "*pi"){
+            if(string.substring(string.length-3) == "*pi"){
                 string = (Number(string.substring(0, string.indexOf("*"))) * 180).toString();
                 checkLength(string);
                 displayBox.innerHTML = string;
             }
         }
-        $("button").prop("disabled", true);
-        $(".calu-func").attr("disabled", false);
     });
     //提供一个0~1之间的随机数
     $("#rand").click(function () {
         var num = Math.random();
-        clickMarks(num.toFixed(6));
+        //console.log(num);
+        if (displayBox.innerHTML == "0")clickMarks(num.toString());
     });
 
     $('#equals').click(function () {
@@ -196,40 +208,35 @@ $(document).ready(function () {
 
     function clickNumbers(val) {
         var string = displayBox.innerHTML;
-        console.log(string);
+        //console.log(string);
         var length = string.length;
         if (string.charAt(length - 1) == "%" || (string.charAt(length - 1) == ")" && string.charAt(length - 2) != "y") ||
             string.charAt(length - 1) == "=" || string.charAt(length - 1) == "e" || string.charAt(length - 1) == "pi" ||
             string.charAt(length - 1) == "i" || string.charAt(length - 1) == "!" || string === "NaN" || string === "Inifity" || string === "Undefined") {
             ;
         } else {
-            if( !isNaN(string.charAt(length-1)) && (val == "e" || val == "pi")){
+            if( (!isNaN(string.charAt(length-1)) || string == "Infinity" ) && (val == "e" || val == "pi")){
                 ;
             }else{
                 if (string == "0" || string.substring(0, 2) == "n=") {
-                    string = val;
-                    displayBox.innerHTML = string;
+                    string = val;   
                 } else {
                     if (string.indexOf("y") != -1) {
                         string = string.replace("y", val);
-                        displayBox.innerHTML = string;
                     } else {
                         if (string.substring(string.length - 3, string.length) == "log") {
                             string = string + val + ",";
-                            checkLength(string);
-                            displayBox.innerHTML = string;
                         } else {
                             if (string.indexOf("x") != -1) {
                                 string = string.replace("x", val);
-                                displayBox.innerHTML = string;
                             } else {
                                 string += val;
-                                checkLength(string);
-                                displayBox.innerHTML = string;
                             }
                         }
                     }
                 }
+                checkLength(string);
+                displayBox.innerHTML = string;
             }
         }
     }
@@ -338,9 +345,8 @@ $(document).ready(function () {
         for(var i = 0; i<timesLeft;i++){
             var indexLeft = indexsLeft.pop();
             var indexRight = indexsRight.pop();
-            var contentWithBra = string.substring(indexLeft, indexRight + 1);
             var contentBrackets = string.substring(indexLeft + 1, indexRight);
-            if(isNaN(contentBrackets)) string = string.replace(contentWithBra, evalbra(contentBrackets));
+            if(isNaN(contentBrackets)) string = replaceStr(string,indexLeft,indexRight,evalbra(contentBrackets));
         }
         string = evalbra(string);
         var outcome = eval(string);
@@ -352,8 +358,8 @@ $(document).ready(function () {
         var stringRes = "";
         var lastmark = -1;
         var num;
-        console.log(string.length);
-        console.log(string);
+        //console.log(string.length);
+        //console.log(string);
         for (var i = 0; i < string.length; i++) {
             item = string.charAt(i);
             //console.log(item);
@@ -467,14 +473,18 @@ $(document).ready(function () {
         stringRes = eval(stringRes)
         return stringRes.toString();
     }
-
+    function replaceStr( str,start,end,replaceText){
+        var theStr = str.substring(0,start) + replaceText + str.substring(end+1);
+        return theStr;
+    }
     //check string length
     function checkLength(string) {
         if (string.length > 32) {
             displayBox.innerHTML = "Infinity";
             $("button").attr("disabled", true);
-            $(".calu-func").attr("disabled", false);
+           $(".calu-func").attr("disabled", false);
         }
+        //console.log(string.length);
     }
 });
 

@@ -1,3 +1,6 @@
+/**
+ 易慧婕-亲戚计算器  
+ */
 $(document).ready(function() {
 	var displayBox = document.getElementById("display");
 	var displayRes = document.getElementById("result");

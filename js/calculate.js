@@ -1,3 +1,6 @@
+/**
+ 易慧婕-基础计算器  
+ */
 $(document).ready(function() {
   var displayBox = document.getElementById("display");
   var hasEvaluated = false;
@@ -21,7 +24,7 @@ $(document).ready(function() {
     }
     else {
       if (Number(displayBox.innerHTML) >= 0) {
-        console.log(Number(displayBox.innerHTML));
+        //console.log(Number(displayBox.innerHTML));
         displayBox.innerHTML = "-" + displayBox.innerHTML; 
         var last = "(" + displayBox.innerHTML + ")";
       } else {
@@ -62,10 +65,10 @@ $(document).ready(function() {
     var res = evaluate();
     displayBox.innerHTML = res;
     checkLength(displayBox.innerHTML);
-    console.log(res);
-    console.log(typeof(myrecord));
+    //console.log(res);
+    //console.log(typeof(myrecord));
     myrecord.push("+");
-    console.log(myrecord);
+    //console.log(myrecord);
   });
   $("#subtract").click(function() {
     var res = evaluate();
@@ -126,14 +129,14 @@ $(document).ready(function() {
   //input numbers
   function clickNumbers(val) {
     var length = myrecord.length;
-    console.log(myrecord[length-1]);
+    //console.log(myrecord[length-1]);
     if (displayBox.innerHTML === "0" || displayBox.innerHTML === "NaN" || displayBox.innerHTML === "Undefined" || displayBox.innerHTML === "Inifity" ||
          (hasEvaluated == true && !isNaN(displayBox.innerHTML)) || 
          myrecord[length-1] === "+" || myrecord[length-1] === "-" || myrecord[length-1] === "×" || myrecord[length-1] === "÷"){
           if((hasEvaluated ==true && !isNaN(myrecord[length-1])) || myrecord[length-1] === "Infinity"|| myrecord[length-1] === "NaN" || myrecord[length-1] === "Undefined") 
           {myrecord = [];hasEvaluated = false}
       displayBox.innerHTML = val;
-      console.log(val);
+      //console.log(val);
       myrecord.push(val);
       } else {
       displayBox.innerHTML += val;
@@ -150,7 +153,7 @@ $(document).ready(function() {
     //console.log(formula);
     formula = formula.replace(/×/g, "*");
     formula = formula.replace(/÷/g, "/");
-    console.log(formula);
+    //console.log(formula);
     if (formula.indexOf("/0") !== -1) {
       $("button").attr("disabled", false);
       $(".calu-func").attr("disabled", false);
@@ -201,7 +204,7 @@ $(document).ready(function() {
         string = string.replace(/,/g,"");
         string = string.replace(/×/g,"*");
         string = string.replace(/÷/g,"/");
-        console.log(string);
+        //console.log(string);
         var res = eval(string);
       }
       displayBox.innerHTML = res;
@@ -209,5 +212,4 @@ $(document).ready(function() {
       myrecord.push(symbol);
     }
   }
-  //以上为易慧婕
 });
