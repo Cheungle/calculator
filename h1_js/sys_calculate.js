@@ -208,11 +208,14 @@ $(document).ready(function () {
         } else{
             var number = string.substring(string.indexOf(")") + 1, string.lastIndexOf("("));
         }
-
-        var numint = number.split(".")[0];
-        var numdec = number.split(".")[1];
-        var string1 = "";
-        var string2 = "";
+        
+        if(string.indexOf(".") != -1) {
+            var numint = number.split(".")[0];
+            var numdec = number.split(".")[1];
+            var string1 = "";
+            var string2 = "";
+        }
+       
        
         if (sys1 == sys2) {
             string = number;
@@ -222,23 +225,31 @@ $(document).ready(function () {
                 string = number.toString(sys2);
             }
             if (sys2 == 10) {
-                string1 = parseInt(numint, sys1);
-                var numtemp = 0;
-                for (var i = 0; i < numdec.length; i++) {
-                    numtemp += Number(numdec.charAt(i)) * Math.pow(sys1,-(i+1));
+                if(string.indexOf(".") != -1) {
+                    string1 = parseInt(numint, sys1);
+                    var numtemp = 0;
+                    for (var i = 0; i < numdec.length; i++) {
+                        numtemp += Number(numdec.charAt(i)) * Math.pow(sys1,-(i+1));
+                    }
+                    string2 = numtemp;
+                    string = (string1 + string2).toString();
+                } else{
+                    string = parseInt(number,sys1);
                 }
-                string2 = numtemp;
-                string = (string1 + string2).toString();
             }
             if (sys1 != 10 && sys2 != 10) {
-                string1 = parseInt(numint, sys1);
-                var numtemp = 0;
-                for (var i = 0; i < numdec.length; i++) {
-                    numtemp += Number(numdec.charAt(i)) * Math.pow(sys1,-(i+1));
+                if(string.indexOf(".") != -1) {
+                    string1 = parseInt(numint, sys1);
+                    var numtemp = 0;
+                    for (var i = 0; i < numdec.length; i++) {
+                        numtemp += Number(numdec.charAt(i)) * Math.pow(sys1,-(i+1));
+                    }
+                    string2 = numtemp;
+                    string = string1 + string2;
+                    string = string.toString(sys2)
+                } else {
+                    string = parseInt(number,sys1).toString(sys2);
                 }
-                string2 = numtemp;
-                string = string1 + string2;
-                string = string.toString(sys2)
             }
         }
 
