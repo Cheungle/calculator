@@ -340,10 +340,10 @@ $(document).ready(function () {
                 //console.log(stringWithoutOpe);
                 lastmark = i;
                 if (stringWithoutOpe.indexOf("e") !== -1 ) {
-                    stringWithoutOpe = stringWithoutOpe.replace("e", Math.E); 
+                    stringWithoutOpe = stringWithoutOpe.replace(/e/g, Math.E); 
                 }
                 if (stringWithoutOpe.indexOf("pi") !== -1) {
-                    stringWithoutOpe = stringWithoutOpe.replace("pi", Math.PI);
+                    stringWithoutOpe = stringWithoutOpe.replace(/pi/g, Math.PI);
                 }
                 if (stringWithoutOpe.indexOf("%") !== -1) {
                 
@@ -432,6 +432,7 @@ $(document).ready(function () {
                     num1 = Number(stringWithoutOpe.substring(stringWithoutOpe.indexOf("g")+1, stringWithoutOpe.indexOf(",")));
                     num2 = Number(stringWithoutOpe.substring(stringWithoutOpe.indexOf(",") + 1));
                     if( !isNaN(num1) && !isNaN(num2)) num = Math.log(num2) / Math.log(num1);
+                    else num = "NaN";
                     stringWithoutOpe = stringWithoutOpe.replace(stringWithoutOpe.substring(stringWithoutOpe.indexOf("l")), num.toString());
                 }
                 if (item == "#") {
