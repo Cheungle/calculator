@@ -160,14 +160,19 @@ $(document).ready(function () {
     //弧度化角度、角度化弧度（带有pi的识别为弧度）
     $("#rad").click(function () {
         var string = displayBox.innerHTML;
-        if (string.indexOf("p") == -1) {
-            string = (Number(string) / 180).toString() + "pi";
-            checkLength(string);
-            displayBox.innerHTML = string;
-        } else {
-            string = (Number(string.substring(0, string.indexOf("p"))) * 180).toString();
-            checkLength(string);
-            displayBox.innerHTML = string;
+        if (!isNaN(string)){
+            if (string.indexOf("p") == -1) {
+                string = (Number(string) / 180).toString() + "*pi";
+                checkLength(string);
+                displayBox.innerHTML = string;
+            } 
+        }
+        else {
+            if( string.substring(string.length-3) == "*pi"){
+                string = (Number(string.substring(0, string.indexOf("*"))) * 180).toString();
+                checkLength(string);
+                displayBox.innerHTML = string;
+            }
         }
         $("button").prop("disabled", true);
         $(".calu-func").attr("disabled", false);
@@ -194,30 +199,34 @@ $(document).ready(function () {
         console.log(string);
         var length = string.length;
         if (string.charAt(length - 1) == "%" || (string.charAt(length - 1) == ")" && string.charAt(length - 2) != "y") ||
-            string.charAt(length - 1) == "=" || string.charAt(length - 1) == "e" ||
+            string.charAt(length - 1) == "=" || string.charAt(length - 1) == "e" || string.charAt(length - 1) == "pi" ||
             string.charAt(length - 1) == "i" || string.charAt(length - 1) == "!" || string === "NaN" || string === "Inifity" || string === "Undefined") {
             ;
         } else {
-            if (string == "0" || string.substring(0, 2) == "n=") {
-                string = val;
-                displayBox.innerHTML = string;
-            } else {
-                if (string.indexOf("y") != -1) {
-                    string = string.replace("y", val);
+            if( !isNaN(string.charAt(length-1)) && (val == "e" || val == "pi")){
+                ;
+            }else{
+                if (string == "0" || string.substring(0, 2) == "n=") {
+                    string = val;
                     displayBox.innerHTML = string;
                 } else {
-                    if (string.substring(string.length - 3, string.length) == "log") {
-                        string = string + val + ",";
-                        checkLength(string);
+                    if (string.indexOf("y") != -1) {
+                        string = string.replace("y", val);
                         displayBox.innerHTML = string;
                     } else {
-                        if (string.indexOf("x") != -1) {
-                            string = string.replace("x", val);
-                            displayBox.innerHTML = string;
-                        } else {
-                            string += val;
+                        if (string.substring(string.length - 3, string.length) == "log") {
+                            string = string + val + ",";
                             checkLength(string);
                             displayBox.innerHTML = string;
+                        } else {
+                            if (string.indexOf("x") != -1) {
+                                string = string.replace("x", val);
+                                displayBox.innerHTML = string;
+                            } else {
+                                string += val;
+                                checkLength(string);
+                                displayBox.innerHTML = string;
+                            }
                         }
                     }
                 }
@@ -238,10 +247,14 @@ $(document).ready(function () {
             string.charAt(num - 1) == "e" || string.charAt(num - 1) == "i") {
             if (val.substring(0, 5) == "mean=" || val.substring(0, 9) == "variance=" || val == "ln" || val == "(" || val == "e^" ||
                 val == "lg" || val == "sin" || val == "cos" || val == "tan" || val.substring(0, 3) == "arc" || val == "log" || val == "1/x") {
-                ;
+                if( !isNaN(string) && val == "1/x" && string !== "0"){
+                    string = 1/Number(string);
+                    checkLength(string);
+                    displayBox.innerHTML = string;
+                }
             } else {
                 if (string == "0") {
-                    if( val == "^" || val == "^2" || val == "^3" || val == "!"){
+                    if( val == "^" || val == "^2" || val == "^3" || val == "!" || val == "^(1/2)" || val == "^(1/3)" || val == "^(1/y)"){
                         string += val;
                         checkLength(string);
                         displayBox.innerHTML = string;
@@ -271,6 +284,15 @@ $(document).ready(function () {
                     checkLength(string);
                     displayBox.innerHTML = string;
                 }
+            }
+        }
+        if (string.substring(num-3) == "sin" || string.substring(num-3) == "cos" || 
+            string.substring(num-3) == "tan" || string.substring(num-6,num-3) == "arc" ||
+            string.charAt(num-1) == ","){
+            if (val == "("){
+                string += val;
+                checkLength(string);
+                displayBox.innerHTML = string; 
             }
         }
     }
