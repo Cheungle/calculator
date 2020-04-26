@@ -275,9 +275,13 @@ $(document).ready(function () {
                         displayBox.innerHTML = string;
                     }
                 } else {
-                    string += val;
-                    checkLength(string);
-                    displayBox.innerHTML = string;
+                    if (string.charAt(num - 1) == "%" && val == "%" || string.charAt(num - 1) == "!" && val == "!") ;
+                    else {
+                        string += val;
+                        checkLength(string);
+                        displayBox.innerHTML = string;
+                    }
+                    
                 }
             }
         }
@@ -290,9 +294,17 @@ $(document).ready(function () {
                     checkLength(string);
                     displayBox.innerHTML = string; 
                 } else {
-                    string += val;
-                    checkLength(string);
-                    displayBox.innerHTML = string;
+                    if (string.charAt(num - 1) == "^" && isNaN(val)){
+                            string += "(";
+                            string += val;
+                            checkLength(string);
+                            displayBox.innerHTML = string;
+                    }
+                    else {
+                        string += val;
+                        checkLength(string);
+                        displayBox.innerHTML = string;
+                    }   
                 }
             }
         }
@@ -325,31 +337,28 @@ $(document).ready(function () {
             }
         }
         if (evarray.length !== 0 || rightBracket > leftBracket) {
-            displayBox.innerHTML = "Invalid";
+            displayBox.innerHTML = "NaN";
             $("button").prop("disabled", true);
             $(".calu-func").attr("disabled", false);
-            return "Invalid";
+            return "NaN";
         }
         //first calculate the content in brackets
-        var indexLeft = string.indexOf("(");
-        var indexRight = string.indexOf(")");
-        var timesLeft = 0;
+        var indexLeft;
+        var contentBrackets;
         var indexsLeft = [];
-        var indexsRight = [];
-        while(indexLeft !== -1){
-            timesLeft = timesLeft + 1;
-            indexsLeft.push(indexLeft);
-            indexLeft = string.indexOf("(", indexLeft+1);
-        }
-        while(indexRight !== -1){
-            indexsRight.push(indexRight);
-            indexRight = string.indexOf(")", indexRight+1);
-        }
-        for(var i = 0; i<timesLeft;i++){
-            var indexLeft = indexsLeft.pop();
-            var indexRight = indexsRight.pop();
-            var contentBrackets = string.substring(indexLeft + 1, indexRight);
-            if(isNaN(contentBrackets)) string = replaceStr(string,indexLeft,indexRight,evalbra(contentBrackets));
+        for(var i = 0;i < num;i++){
+            if(string.charAt(i) == "("){
+                indexsLeft.push(i);
+            }
+            else{
+                if (string.charAt(i) == ")"){
+                    indexLeft = indexsLeft[indexsLeft.length-1];
+                    contentBrackets = string.substring(indexLeft+1,i);
+                    indexsLeft.pop();
+                    if(isNaN(contentBrackets)) string = replaceStr(string,indexLeft,i,evalbra(contentBrackets));
+                    console.log(contentBrackets);
+                }
+            }
         }
         string = evalbra(string);
         var outcome = eval(string);
