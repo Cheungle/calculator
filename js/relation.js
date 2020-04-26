@@ -109,7 +109,7 @@ $(document).ready(function() {
 		//console.log(result);
 		if(typeof(result) === "string"){
 			if( result === "未知"|| result === " ") result = "关系太远了，随便叫叫吧！";
-		    if( result === "同性") result = "暂不支持同性称呼查询!";
+		    if( result === "同性") result = "暂无同性称呼，但是真爱无敌!";
 			displayRes.innerHTML = result;
 		}
 	});
@@ -172,7 +172,7 @@ $(document).ready(function() {
 			}
 		}
 		if( call === "未知"|| call === " ") call = "关系太远了，随便叫叫吧！";
-		if( call === "同性") call = "暂不支持同性称呼查询!";
+		if( call === "同性") call = "暂无同性称呼，但是真爱无敌!";
 		return call;
 	}
 	//after back ,calculate

@@ -216,7 +216,7 @@ $(document).ready(function () {
             string.charAt(length - 1) == "i" || string.charAt(length - 1) == "!" || string === "NaN" || string === "Infinity" || string === "Undefined") {
             ;
         } else {
-            if( !isNaN(string.charAt(length-1)) && (val == "e" || val == "pi")){
+            if( !isNaN(string.charAt(length-1)) && (val == "e" || val == "pi" ) && string !== "0"){
                 ;
             }else{
                 if (string == "0" || string.substring(0, 2) == "n=") {
@@ -386,7 +386,7 @@ $(document).ready(function () {
                 }
                 if (stringWithoutOpe.indexOf("!") != -1) {
                     num = Number(stringWithoutOpe.substring(0, stringWithoutOpe.indexOf("!")));
-                    if (!isNaN(num)){
+                    if (!isNaN(num) && num.toString().indexOf(".") == -1){
                         var res = 1;
                         if(num == 0 || num == 1) num = 1;
                         else {
@@ -396,7 +396,8 @@ $(document).ready(function () {
                           num = res;
                         }
                     }
-                    stringWithoutOpe = stringWithoutOpe.replace(stringWithoutOpe.substring(0, stringWithoutOpe.indexOf("!") + 1), num.toString());
+                    if(num.toString().indexOf(".") !== -1) stringWithoutOpe = "NaN";
+                    else stringWithoutOpe = stringWithoutOpe.replace(stringWithoutOpe.substring(0, stringWithoutOpe.indexOf("!") + 1), num.toString());
                 }
                 if (stringWithoutOpe.indexOf("^") != -1) {
                     num1 = stringWithoutOpe.substring(0, stringWithoutOpe.indexOf("^"));
