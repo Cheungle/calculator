@@ -254,7 +254,7 @@ $(document).ready(function () {
             string.charAt(num - 1) == "%" || string.charAt(num - 1) == "!" ||
             string.charAt(num - 1) == "e" || string.charAt(num - 1) == "i") {
             if (val.substring(0, 5) == "mean=" || val.substring(0, 9) == "variance=" || val == "ln" || val == "(" || val == "e^" ||
-                val == "lg" || val == "sin" || val == "cos" || val == "tan" || val.substring(0, 3) == "arc" || val == "log" || val == "1/x") {
+                val == "lg" || val == "sin" || val == "cos" || val == "tan" || val.substring(0, 3) == "arc" || val == "log" || val == "1/x" ) {
                 if( !isNaN(string) && val == "1/x" && string !== "0"){
                     string = 1/Number(string);
                     checkLength(string);
@@ -275,13 +275,24 @@ $(document).ready(function () {
                         displayBox.innerHTML = string;
                     }
                 } else {
-                    if (string.charAt(num - 1) == "%" && val == "%" || string.charAt(num - 1) == "!" && val == "!") ;
+                    if ((string.charAt(num - 1) == "%" || string.charAt(num - 1) == "!")&& (val == "%"  || val == "!"));
                     else {
-                        string += val;
-                        checkLength(string);
-                        displayBox.innerHTML = string;
+                        var end = string.charAt(num-1);
+                        var substr = string.substring(string.lastIndexOf("^")+1);
+                        if( ( string.charAt(num-2) == "^" && ( end == "e" || !isNaN(end))) || 
+                            (string.lastIndexOf("^") !== -1 && (!isNaN(eval(substr)) || string.substring(num-3) == "/y)")) ){
+                            if (val == "^" || val.charAt(0) == "^" || val == "!" || val == "%");
+                            else {
+                                string += val;
+                                checkLength(string);
+                                displayBox.innerHTML = string;
+                            }
+                        }else {
+                            string += val;
+                            checkLength(string);
+                            displayBox.innerHTML = string;
+                        } 
                     }
-                    
                 }
             }
         }
@@ -301,9 +312,9 @@ $(document).ready(function () {
                             displayBox.innerHTML = string;
                     }
                     else {
-                        string += val;
-                        checkLength(string);
-                        displayBox.innerHTML = string;
+                            string += val;
+                            checkLength(string);
+                            displayBox.innerHTML = string;
                     }   
                 }
             }
