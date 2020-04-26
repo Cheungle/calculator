@@ -62,6 +62,10 @@ $(document).ready(function() {
 
   //operation
   $("#add").click(function() {
+    var end = myrecord[myrecord.length-1] ;
+    if(end == "-" || end == "*" || end == "/"){
+       myrecord.pop();
+    }
     var res = evaluate();
     displayBox.innerHTML = res;
     checkLength(displayBox.innerHTML);
@@ -71,15 +75,27 @@ $(document).ready(function() {
     //console.log(myrecord);
   });
   $("#subtract").click(function() {
+    var end = myrecord[myrecord.length-1] ;
+    if(end == "+" || end == "*" || end == "/"){
+      myrecord.pop();
+   }
     var res = evaluate();
     displayBox.innerHTML = res;
     checkLength(displayBox.innerHTML);
     myrecord.push("-");
   });
   $("#multiply").click(function() {
+    var end = myrecord[myrecord.length-1] ;
+    if(end == "-" || end == "+" || end == "/"){
+      myrecord.pop();
+   }
     priority("×");
   });
   $("#divide").click(function() {
+    var end = myrecord[myrecord.length-1] ;
+    if(end == "-" || end == "*" || end == "+"){
+      myrecord.pop();
+   }
     priority("÷");
   });
   $("#percent").click(function() {
